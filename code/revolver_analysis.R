@@ -36,16 +36,42 @@ dir.create(jackknife.dir, showWarnings = F, recursive = T)
 ## construct revolver object
 meso.cohort = revolver_cohort(
   dataset = dataset,
-  CCF_parser = revolver:::CCF.parser,
+  CCF_parser = revolver:::CCF_parser,
   annotation = cohort.name,
   ONLY.DRIVER = FALSE,
   MIN.CLUSTER.SIZE = 1
 )
 
-## infer phylogeny tree of subclonal/clonal
-for (patient in meso.cohort$patients) {
-    meso.cohort = revolver_compute_phylogenies(meso.cohort, patient, options = options.trees)
+#----- check cohort for singular drivers and remove them ----
+removeSingularDrivers <- function(meso.cohort, stopOnError = TRUE){
+  non.recurrent = Stats_drivers(meso.cohort) %>%
+    filter(N_tot == 1) %>%
+    pull(variantID)
+  
+  for(VID in non.recurrent){
+    meso.cohort <- remove_drivers(meso.cohort, variantID = VID, check = TRUE)
+  }
+  
+  revolver_check_cohort(meso.cohort, stopOnError = TRUE)
 }
+
+# revolver_check_cohort(meso.cohort, stopOnError = TRUE)
+# non.recurrent = Stats_drivers(meso.cohort) %>%
+#   filter(N_tot == 1) %>%
+#   pull(variantID)
+# 
+# for(VID in non.recurrent){
+#   meso.cohort <- remove_drivers(meso.cohort, variantID = VID, check = TRUE)
+# }
+# revolver_check_cohort(meso.cohort, stopOnError = TRUE)
+
+
+## infer phylogeny tree of subclonal/clonal
+# for (patient in meso.cohort$patients) {
+#     meso.cohort = compute_mutation_trees(meso.cohort, patient, options = options.trees)
+# }
+
+meso.cohort <- compute_mutation_trees(meso.cohort, patients = meso.cohort$patients)
 
 ## fit repeat evolution tree
 meso.fit = revolver_fit(meso.cohort, initial.solution = options.fit$initial.solution, 
