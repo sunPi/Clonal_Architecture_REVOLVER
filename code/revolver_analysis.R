@@ -21,14 +21,6 @@ options.clustering.withoutGL = list(transitive.closure = FALSE, min.group.size =
 
 load(here("data", "revolver_analysis.Rdata"))
 
-
-options.trees = list(sspace.cutoff = 1000, n.sampling = 500, store.max = 200, overwrite = FALSE)
-options.fit = list(initial.solution = NA, transitive.orderings = FALSE, restarts = 10)
-options.clustering.withGL = list(transitive.closure = FALSE, min.group.size = 3, hc.method = 'ward', cutoff.features_annotation = 1, split.method = 'cutreeHybrid')
-options.clustering.withoutGL = list(transitive.closure = FALSE, min.group.size = 3, hc.method = 'ward', cutoff.features_annotation = 1,split.method = 'cutreeDynamic')
-
-load("revolver_analysis.Rdata")
-
 cohort.name = 'MEDUSA'
 do.plots = TRUE
 cex.fit = 3
@@ -44,11 +36,10 @@ dir.create(jackknife.dir, showWarnings = F, recursive = T)
 ## construct revolver object
 meso.cohort = revolver_cohort(
   dataset = dataset,
-  CCF.parser = revolver:::CCF.parser,
+  CCF_parser = revolver:::CCF.parser,
   annotation = cohort.name,
-  options = list(
   ONLY.DRIVER = FALSE,
-  MIN.CLUSTER.SIZE = 1)
+  MIN.CLUSTER.SIZE = 1
 )
 
 ## infer phylogeny tree of subclonal/clonal
