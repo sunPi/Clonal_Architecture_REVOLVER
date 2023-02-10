@@ -2,16 +2,25 @@
 ##                                                       ##
 ## Package: revolver                                     ##
 ## Version: 0.2.0                                        ##
-## Date: 2018-12-3                                       ##
-## Title: Repeated Evolution in Cancer (REVOLVER)        ##
+## Date: 2013-10-2                                       ##
+## Title: Repeated Evolution in Cancer (REVOLVER-updates)##
 ##                                                       ##
 ###########################################################
-
+library(here)
 library(revolver)
+
 ## options 
 options(crayon.enabled = FALSE)
 options(revolver.progressBar = FALSE)
 options(revolver.jamPDF=TRUE)
+
+options.trees = list(sspace.cutoff = 1000, n.sampling = 500, store.max = 200, overwrite = FALSE)
+options.fit = list(initial.solution = NA, transitive.orderings = FALSE, restarts = 10)
+options.clustering.withGL = list(transitive.closure = FALSE, min.group.size = 3, hc.method = 'ward', cutoff.features_annotation = 1, split.method = 'cutreeHybrid')
+options.clustering.withoutGL = list(transitive.closure = FALSE, min.group.size = 3, hc.method = 'ward', cutoff.features_annotation = 1,split.method = 'cutreeDynamic')
+
+load(here("data", "revolver_analysis.Rdata"))
+
 
 options.trees = list(sspace.cutoff = 1000, n.sampling = 500, store.max = 200, overwrite = FALSE)
 options.fit = list(initial.solution = NA, transitive.orderings = FALSE, restarts = 10)
