@@ -37,7 +37,8 @@ resamples      <- as.integer(arguments$resamples)
 print(min.group.size)
 print(resamples)
 
-meso.fit <- readRDS("./input/meso_fitted_clone_trees.RDS")
+# meso.fit <- readRDS("./input/meso_fitted_clone_trees.RDS")
+meso.fit <- readRDS("../data/meso_fitted_clone_trees.RDS")
 
 meso.fit.clustering <- revolver_cluster(
   meso.fit,
