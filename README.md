@@ -3,14 +3,33 @@
 Analysis scripts and relative data used in the paper "Clonal Architecture in Mesothelioma is prognostic and shapes the Tumour Microenvironment" by Zhang et al.
 
 ## data
-contains many .Rdata files ready to use in the analysis.
+Contains the input file (txt), which is already formatted and ready to use for REVOLVER analysis.
 
 ## code
 
-clonal_analysis.R: This script is used to calculate cancer cell fraction of somatic mutations, and generate input TSV files for PyClone clusterings analysis.
+revolver_analysis.R: This script performs REVOLVER analysis to construct phylogeny trees and infer repeat evolution trajectories in MEDUSA22 cohort.
 
-dndscv_analysis.R: This script is used to run dndsCV analysis both for clonal and subclonal mutations.
+Usage:
+  revolver_analysis.R [options]
 
-mutational_signature_analysis.R: This script is used to deconstruct mutational signature contributions based on COSMICV3 reference.
+Options:
+  --dataset=<FILE_PATH>     This is a required argument. Specify the path to the input file in .txt format - REQUIRED ARG
+  --results=<FILE_PATH>     Speficy the outfolder to save the results in. - REQUIRED ARG
+  --sspace=<VALUE>          Set the value for sspace.cutoff argument [default: 1000]
+  --n_sampling=<VALUE>      [default: 500]
+  --store_max=<VALUE>       [default: 200]
+  --restarts=<VALUE>        [default: 10]
+  --min_group_size=<VALUE>  [default: 3]
+  --hc_method=<VALUE>       [default: ward]
+  --split_method=<VALUE>    [default: cutreeHybrid]
+  --tree_type               [defult:  clone_trees]
+  -c --cohort               If set, looks for a constructed cohort in the ./ or results directory.
+  -t --trees                If set, looks for computed trees in the ./ or results directory.
+  -f --fit                  If set, looks for computed AND fitted trees in the ./ or results directory.
+  -l --cluster              If set, looks for computed cohort, computed and fitted trees AND computed clusters. 
+  -j --jackknife            If set, runs a quick non-intensive jackknife cross-validation.
+  --version=0.1     Show version.
 
-revolver_analysis.R: This script is used to perform REVOLVER analysis to construct phylogeny trees and infer repeat evolution trajectories in MEDUSA22 cohort.
+  For a basic run use (add -j to run cross-validation):
+
+  Rscript revolver_analysis.R --dataset=input.txt --results=results -j 
