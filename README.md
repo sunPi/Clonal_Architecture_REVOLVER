@@ -5,10 +5,10 @@ Analysis scripts and relative data used in the paper "Clonal Architecture in Mes
 ## data
 Contains the input file (txt), which is already formatted and ready to use for REVOLVER analysis.
 
-## code
+## R
+This script performs REVOLVER analysis to construct phylogeny trees and infer repeat evolution trajectories in MEDUSA22 cohort.
 
-revolver_analysis.R: This script performs REVOLVER analysis to construct phylogeny trees and infer repeat evolution trajectories in MEDUSA22 cohort.
-
+```
 Usage:
   revolver_analysis.R [options]
 
@@ -33,3 +33,4 @@ Options:
   For a basic run use (add -j to run cross-validation):
 
   Rscript revolver_analysis.R --dataset=input.txt --results=results -j 
+```
