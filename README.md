@@ -1,6 +1,6 @@
 # Mesothelioma_evolution_deciphering_drugable_somatic_alterations
 
-Analysis scripts and relative data used in the paper "Clonal Architecture in Mesothelioma is prognostic and shapes the Tumour Microenvironment" by Zhang et al.
+Analysis scripts and relative data used in the paper "Clonal Architecture in Mesothelioma is prognostic and shapes the Tumour Microenvironment" by Zhang et., al., 2022. https://www.nature.com/articles/s41467-021-21798-w
 
 ## data
 Contains the input file (txt), which is already formatted and ready to use for REVOLVER analysis.
