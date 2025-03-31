@@ -298,7 +298,7 @@ dev.off()
 
 if(arguments$jackknife){
   # --- cross-validate using jackknife approach
-  meso.jackknife <- revolver_jackknife(meso.fit.clustering)
+  meso.jackknife <- revolver_jackknife(meso.cohort)
   saveRDS(meso.jackknife, here(dirs$Jackknife, ".meso_jackknife.RDS"))
   
   # --- plot results for phylogenetic analysis, jacknife metrics
